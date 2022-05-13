@@ -17,8 +17,8 @@ class Insert
 
             $sql = "insert into {$this->table}(";
             $sql.= implode(',', array_keys($data)).') values(';
+            // $sql.= ':'.implode(',:', array_keys($data)).')';
             $binds = join(',', array_map(fn ($field) => ':'.$field, array_keys($data)));
-
             $sql.=$binds.')';
 
             $prepare = $connection->prepare($sql);
